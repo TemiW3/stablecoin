@@ -1,2 +1,2 @@
-use admin::*;
-mod admin;
+pub use admin::*;
+pub mod admin;
