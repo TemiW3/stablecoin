@@ -5,7 +5,7 @@ use pyth_solana_receiver_sdk::price_update::PriceUpdateV2;
 
 use crate::constants::{SEED_COLLATERAL_ACCOUNT, SEED_CONFIG_ACCOUNT, SEED_SOL_ACCOUNT};
 use crate::instructions::{check_health_factor, deposit_sol, mint_tokens};
-use crate::state::{Collateral, Config}; // Add this line if Config is defined in state.rs
+use crate::state::{Collateral, Config}; 
 
 
 

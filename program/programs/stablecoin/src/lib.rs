@@ -21,13 +21,13 @@ declare_id!("4FYnSZBqu28PL8rhezVzz1MXKNPTPo5Grwavfr6Lgfb9");
 pub mod stablecoin {
     use super::*;
 
-   pub fn initialize_config(ctx: Context<InitializeConfig>) -> Result<()> {
-        process_initialize_config(ctx)
-   }
+     pub fn initialize_config(ctx: Context<InitializeConfig>) -> Result<()> {
+          process_initialize_config(ctx)
+     }
 
-   pub fn update_config(ctx: Context<UpdateConfig>, minimum_health_factor: u64) -> Result<()> {
-        process_update_config(ctx, minimum_health_factor)
-   }
+     pub fn update_config(ctx: Context<UpdateConfig>, minimum_health_factor: u64) -> Result<()> {
+          process_update_config(ctx, minimum_health_factor)
+     }
 
      pub fn deposit_collateral_and_mint_tokens(
             ctx: Context<DepositCollateralAndMintTokens>,
@@ -35,5 +35,13 @@ pub mod stablecoin {
             amount_tokens: u64,
       ) -> Result<()> {
             proccess_deposit_collateral_and_mint_tokens(ctx, amount_collateral, amount_tokens)
+     }
+
+     pub fn redeem_collateral_and_burning_tokens(
+            ctx: Context<RedeemCollateralAndBurningTokens>,
+            amount_to_burn: u64,
+            amount_collateral: u64,
+      ) -> Result<()> {
+            process_redeem_collateral_and_burning_tokens(ctx, amount_to_burn, amount_collateral)
      }
 }
