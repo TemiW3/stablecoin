@@ -46,7 +46,7 @@ pub fn get_usd_value(amount_in_lamports: &u64, price_feed: &Account<PriceUpdateV
 
     let price_in_usd = price.price as u128 * PRICE_FEED_DECIMAL_ADJUSTMENT;
 
-    let amount_in_usd = (amount_in_lamports as u128 * price_in_usd)/ (LAMPORTS_PER_SOL as u128);
+    let amount_in_usd = (*amount_in_lamports as u128 * price_in_usd)/ (LAMPORTS_PER_SOL as u128);
 
     Ok(amount_in_usd as u64)
 }

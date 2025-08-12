@@ -1,4 +1,4 @@
-use anchor_lang::{ prelude::*, solana_program::example_mocks::solana_sdk::system_program};
+use anchor_lang::{ prelude::*};
 use anchor_spl::{token, token_2022::{mint_to, MintTo, Token2022}, token_interface::{Mint, TokenAccount}};
 use anchor_lang::system_program::{Transfer, transfer};
 
