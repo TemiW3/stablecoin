@@ -9,6 +9,8 @@ pub mod instructions;
 use state::*;
 use constants::*;
 use instructions::*;
+pub use errors::*;
+mod errors;
 
 
 
@@ -26,4 +28,12 @@ pub mod stablecoin {
    pub fn update_config(ctx: Context<UpdateConfig>, minimum_health_factor: u64) -> Result<()> {
         process_update_config(ctx, minimum_health_factor)
    }
+
+     pub fn deposit_collateral_and_mint_tokens(
+            ctx: Context<DepositCollateralAndMintTokens>,
+            amount_collateral: u64,
+            amount_tokens: u64,
+      ) -> Result<()> {
+            proccess_deposit_collateral_and_mint_tokens(ctx, amount_collateral, amount_tokens)
+     }
 }

@@ -4,6 +4,7 @@ use anchor_spl::token_interface::{TokenAccount, Token2022, Mint};
 use pyth_solana_receiver_sdk::price_update::PriceUpdateV2;
 
 use crate::constants::{SEED_COLLATERAL_ACCOUNT, SEED_CONFIG_ACCOUNT, SEED_SOL_ACCOUNT};
+use crate::instructions::{check_health_factor, deposit_sol, mint_tokens};
 use crate::state::{Collateral, Config}; // Add this line if Config is defined in state.rs
 
 
@@ -25,6 +26,21 @@ pub fn proccess_deposit_collateral_and_mint_tokens(
         collateral_account.bump = ctx.bumps.collateral_account;
         collateral_account.bump_sol_account = ctx.bumps.sol_account;
     }
+
+    check_health_factor(
+        &ctx.accounts.collateral_account, 
+        &ctx.accounts.config_account, 
+        &ctx.accounts.price_update)?;
+
+    deposit_sol(&ctx.accounts.system_program, &ctx.accounts.depositor, &ctx.accounts.sol_account, amount_collateral)?;
+
+    mint_tokens(
+        ctx.accounts.config_account.bump_mint_account,
+        &ctx.accounts.token_program,
+        &ctx.accounts.mint_account,
+        &ctx.accounts.token_account,
+        amount_tokens,
+    )?;
 
     Ok(())
 }
