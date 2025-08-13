@@ -21,11 +21,9 @@ pub fn withdraw_sol<'info>(
                 from: from.to_account_info(),
                 to: to.to_account_info(),
             }, 
-            signer_seeds),
-            amount
-    )?;
-
-    Ok(())
+            signer_seeds,),
+            amount,
+    )
 }
 
 pub fn burn_tokens<'info>(
@@ -45,8 +43,5 @@ pub fn burn_tokens<'info>(
                 authority: authority.to_account_info(),
             }),
             amount
-     )?;
-    
-
-    Ok(())
+     )
 }

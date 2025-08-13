@@ -28,7 +28,7 @@ pub fn process_liquidate(
 
     withdraw_sol(
         ctx.accounts.collateral_account.bump_sol_account, 
-        &ctx.accounts.collateral_account.depositor.key(), 
+        &ctx.accounts.collateral_account.depositor, 
         &ctx.accounts.system_program, 
         &ctx.accounts.sol_account, 
         &ctx.accounts.liquidator.to_account_info(), 

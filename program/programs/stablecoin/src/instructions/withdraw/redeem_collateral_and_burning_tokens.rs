@@ -27,15 +27,15 @@ pub fn process_redeem_collateral_and_burning_tokens(
         &ctx.accounts.token_program,
         &ctx.accounts.mint_account, 
         &ctx.accounts.token_account, 
-        &ctx.accounts.redeemer, 
+        &ctx.accounts.depositor, 
         amount_to_burn)?;
 
     withdraw_sol(
         ctx.accounts.collateral_account.bump_sol_account, 
-        &ctx.accounts.redeemer.key(), 
+        &ctx.accounts.depositor.key(), 
         &ctx.accounts.system_program, 
         &ctx.accounts.sol_account, 
-        &ctx.accounts.redeemer.to_account_info(), 
+        &ctx.accounts.depositor.to_account_info(), 
         amount_collateral)?;
 
     Ok(())
@@ -44,7 +44,7 @@ pub fn process_redeem_collateral_and_burning_tokens(
 #[derive(Accounts)]
 pub struct RedeemCollateralAndBurningTokens<'info> {
     #[account(mut)]
-    pub redeemer: Signer <'info>,
+    pub depositor: Signer <'info>,
 
     pub price_update: Account<'info, PriceUpdateV2>,
 
@@ -57,7 +57,7 @@ pub struct RedeemCollateralAndBurningTokens<'info> {
 
     #[account(
         mut,
-        seeds = [SEED_COLLATERAL_ACCOUNT, redeemer.key().as_ref()],
+        seeds = [SEED_COLLATERAL_ACCOUNT, depositor.key().as_ref()],
         bump = collateral_account.bump,
         has_one = sol_account,
         has_one = token_account,

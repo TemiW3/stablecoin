@@ -6,6 +6,6 @@ pub enum StablecoinError {
     InvalidPrice,
     #[msg("Below Minimum Health Factor")]
     BelowMinHealthFactor,
-    #[msg("Above Minimum Health Factor")]
+    #[msg("Above Minimum Health Factor, Cannot liquidate a healthy account")]
     AboveMinimumHealthFactor,
 }
